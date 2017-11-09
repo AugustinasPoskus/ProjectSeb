@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agreement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Margin" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="BaseRateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CUSTOMER" FromRole="Agreement" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonalId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Agreements" Relationship="Self.FK_CUSTOMER" FromRole="Customer" ToRole="Agreement" />
+  </EntityType>
+  <Association Name="FK_CUSTOMER">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Agreement" Type="Self.Agreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Agreement">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agreements" EntityType="Self.Agreement" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <AssociationSet Name="FK_CUSTOMER" Association="Self.FK_CUSTOMER">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Agreement" EntitySet="Agreements" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

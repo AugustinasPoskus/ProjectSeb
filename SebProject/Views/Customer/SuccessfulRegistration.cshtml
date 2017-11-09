@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Successful registration";
+}
+
+<h2>@ViewBag.Title</h2>
+<div>
+    <p>
+        Your registration was successful. Please @Html.ActionLink("Click here to continue", "Index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </p>
+</div>

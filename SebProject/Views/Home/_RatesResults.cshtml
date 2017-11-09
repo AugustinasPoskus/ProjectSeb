@@ -1,0 +1,12 @@
+﻿@model SebProject.Models.InterestRatesModel
+
+@if (Model.NewInterestRate != 0.0M && Model.OldInterestRate != 0.0M)
+{
+    <h4>New interest rate is: @Model.NewInterestRate</h4>
+    <h4>Old interest rate is: @Model.OldInterestRate</h4>
+    <h4>Difference between them: @(Model.NewInterestRate - Model.OldInterestRate)</h4> 
+}
+
+
+
+

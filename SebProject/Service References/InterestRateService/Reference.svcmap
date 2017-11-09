@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2d4bc9c3-2c50-4845-bea9-0e3d398bc807" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:65102/InterestRateService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="InterestRateService.xsd" MetadataType="Schema" ID="d258f3b9-89f8-46a0-971e-448ede4ee1a1" SourceId="1" SourceUrl="http://localhost:65102/InterestRateService.svc?xsd=xsd0" />
+    <MetadataFile FileName="InterestRateService.wsdl" MetadataType="Wsdl" ID="f30c11ac-6540-4533-bff1-8b9b5cfb1079" SourceId="1" SourceUrl="http://localhost:65102/InterestRateService.svc?wsdl" />
+    <MetadataFile FileName="InterestRateService.disco" MetadataType="Disco" ID="fcabcc3a-a031-4544-bde0-4c4ed638353c" SourceId="1" SourceUrl="http://localhost:65102/InterestRateService.svc?disco" />
+    <MetadataFile FileName="InterestRateService1.xsd" MetadataType="Schema" ID="4aef65d4-95a2-4b11-899a-0b1465abee3e" SourceId="1" SourceUrl="http://localhost:65102/InterestRateService.svc?xsd=xsd1" />
+    <MetadataFile FileName="InterestRateService2.xsd" MetadataType="Schema" ID="c0432696-cd33-4922-ba63-deb34a532f1c" SourceId="1" SourceUrl="http://localhost:65102/InterestRateService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

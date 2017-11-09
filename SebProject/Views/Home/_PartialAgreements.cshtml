@@ -1,0 +1,90 @@
+﻿@model SebProject.Models.CustomerDetailsModel
+
+<style type="text/css">
+    .webgrid-table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+        width: 100%;
+        display: table;
+        border-collapse: separate;
+        border: solid 1px #98BF21;
+        background-color: white;
+    }
+
+        .webgrid-table td, th {
+            border: 1px solid #98BF21;
+            padding: 3px 7px 2px;
+        }
+
+    .webgrid-header {
+        background-color: #A7C942;
+        color: #FFFFFF;
+        padding-bottom: 4px;
+        padding-top: 5px;
+        text-align: left;
+    }
+
+    .webgrid-footer {
+    }
+
+    .webgrid-row-style {
+        padding: 3px 7px 2px;
+    }
+
+    .webgrid-alternating-row {
+        background-color: #EAF2D3;
+        padding: 3px 7px 2px;
+    }
+</style>
+
+@if (Model != null && Model.Agreements != null && Model.Agreements.Count() > 0)
+{
+    var grid = new WebGrid(null, canPage: false, canSort: false);
+    grid.Bind(Model.Agreements, autoSortAndPage: true, rowCount: Model.Agreements.Count());
+    <hr />
+    <div>
+        <div id="gridContent" style="padding:20px;">
+            @Html.Label(Model.DisplayValue)
+            @grid.GetHtml(
+            tableStyle: "webgrid-table",
+            headerStyle: "webgrid-header",
+            footerStyle: "webgrid-footer",
+            alternatingRowStyle: "webgrid-alternating-row",
+            selectedRowStyle: "webgrid-selected-row",
+            rowStyle: "webgrid-row-style",
+            columns:
+            grid.Columns
+            (
+              grid.Column(header: "Choose", format: @<text><input name="RadioButton" type="radio" value="@item.Id" /></text>),
+              grid.Column("Amount", "Amount"),
+              grid.Column("BaseRateCode", "Base rate code"),
+              grid.Column("Duration", "Margin"),
+              grid.Column("Margin", "Agreement duration")
+            ))
+        </div>
+    </div>
+    <div>
+        @using (Ajax.BeginForm("CalculateInterestRate", "Home", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "ratesResults" }, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="col-md-offset-2 col-md-10">
+                @Html.HiddenFor(x => x.SelectedAgreementId)
+                @Html.HiddenFor(x => x.SelectedBaseCode)
+                <input type="submit" class="btn btn-default" value="Submit" onclick="HiddenValue();"/>
+            </div>
+        }
+    </div>
+    <fieldset>
+        <div id="ratesResults">
+            @{ Html.RenderPartial("_RatesResults", new SebProject.Models.InterestRatesModel()); }
+        </div>
+    </fieldset>
+    }
+    else
+    {
+        <div><h4>No results found! Maybe personal id does not exist?</h4></div>
+    }
+<script type="text/javascript">
+    function HiddenValue() {
+        $("#SelectedAgreementId").val($('input[name=RadioButton]:checked', '#gridContent').val());
+    }
+</script>
